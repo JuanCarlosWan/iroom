@@ -11,18 +11,43 @@
             <h1>Configurar Nombre de Usuario</h1>
         </header>
         <main>
-            <section>
-                <h2>Datos Personales</h2>
-                <form id="form-nombre">
-                    <label for="fname">Nombre:</label>
-                    <input type="text" id="fname" name="fname" placeholder="Escribe tu nombre" required>
-                    <br><br>
-                    <input type="submit" value="Guardar Nombre">
-                </form>
-                <br>
-                <a href="index.html">Volver a inicio</a>
-            </section>
-        </main>
+    <section class="contenedor-tarjeta">
+        <h2>Datos Personales</h2>
+        
+        <form id="form-nombre">
+            <!-- Nombre -->
+            <div class="grupo-input">
+                <label for="fname">Nombre:</label>
+                <input type="text" id="fname" name="fname" placeholder="Escribe tu nombre" required>
+            </div>
+
+            <!-- Correo -->
+            <div class="grupo-input">
+                <label for="email">Correo electrónico:</label>
+                <input type="text" id="email" name="email" placeholder="nombre.apellidos@edu.uah.es">
+            </div>
+
+            <!-- Botones de verificación de correo -->
+            <div class="fila-botones">
+                <!-- Botón 1 -->
+                    <button type="button" class="btn btn-secundario" onclick="alert(validarEmailPorCadenas(document.getElementById('email').value) ? 'Email Válido' : 'Email Inválido')">
+                        Verificar Email (Cadenas)
+                    </button>
+
+                <!-- Botón 2 -->
+                    <button type="button" class="btn btn-secundario" onclick="alert(validarEmailPorRegex(document.getElementById('email').value) ? 'Email Válido' : 'Email Inválido')">
+                        Verificar Email (RegExp)
+                    </button>
+            </div>
+
+            <!-- Botón de guardar y volver -->
+            <div class="fila-botones-acciones">
+                <a href="index.html" class="btn btn-secundario">Volver a inicio</a>
+                <input type="submit" class="btn btn-primario" value="Guardar Nombre">
+            </div>
+        </form>
+    </section>
+</main>
         <footer>
             <p>Universidad de Alcalá</p>
         </footer>

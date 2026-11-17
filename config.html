@@ -5,6 +5,7 @@
         <title>Configuracion del index</title>
         <link href="css/iroom.css" rel="stylesheet">
         <script src="script.js"></script>
+        
     </head>
     <body>
         <header>
@@ -12,41 +13,87 @@
         </header>
         <main>
             <form id="form-config">
-                <fieldset>    <!-- Sirve para crear un grupo-->
-                    <legend>Datos de la Habitación</legend> <!--Legend sirve para dar titulo a un grupo de campos-->
-                        <label for="pais"> País </label>
-                            <input type="text" id="pais" name="pais">
-                        <label for="ciudad"> Ciudad: </label>
-                            <input type="text" id="ciudad" name="ciudad">
-                        <label for="coord"> Coordenadas GPS: </label>
-                            <input type="text" id="coord" name="coord">
-                        <label for="mapa"> Mapa URL: </label>
-                            <input type="text" id="mapa" name="mapa">
-                        <label for="foto"> Foto: </label>
-                            <input type="file" id="foto" name="foto">
-                        <label for="pass"> Password: </label>
-                            <input type="password" id="pass" name="pass">
-                </fieldset>
-                <fieldset>
-                    <legend>Sensores de la Habitación</legend>
-                        <label for="temp"> Temperatura: </label>
-                            <input type="checkbox" id="temp" name="sensor" value="temp">    <!--NAME para  agruparlos, VALUE para identificar cada sensor-->
-                        <label for="humedad"> Humedad: </label>
-                            <input type="checkbox" id="humedad" name="sensor" value="humedad">    
-                        <label for="nsonido"> Nivel de Sonido: </label>
-                            <input type="checkbox" id="nsonido" name="sensor" value="nsonido">    
-                        <label for="nluz"> Nivel de Luz: </label>
-                            <input type="checkbox" id="nluz" name="sensor" value="nluz">    
-                        <label for="mov"> Movimiento: </label>
-                            <input type="checkbox" id="mov" name="sensor" value="mov">    <!-- ID sirve para identificar un elemento dentro del documento-->
-                        <label for="temp-max"> Temperatura Maxima: </label>
-                            <input type="number" id="temp-max" name="temp-max" min="-20" max="45">
-                        <label for="temp-min"> Temperatura Minima: </label>
-                            <input type="number" id="temp-min" name="temp-min" min="-20" max="45">
-                    <output id="diferencia" for="temp-max temp-min"></output>
-                </fieldset>
-                <input type="submit" value="Enviar datos">
+    <fieldset>    
+        <legend>Datos de la Habitación</legend>
+        
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="pais">País</label>
+                <input type="text" id="pais" name="pais" list="listaPaises">
+                <datalist id="listaPaises">
+                    <option value="España">
+                    <option value="Francia">
+                    <option value="Portugal">
+                    <option value="Italia">
+                    <option value="Alemania">
+                </datalist>
+            </div>
+
+            <div class="form-group">
+                <label for="ciudad">Ciudad</label>
+                <input type="text" id="ciudad" name="ciudad">
+            </div>
+
+            <div class="form-group">
+                <label for="coord">Coordenadas GPS</label>
+                <input type="text" id="coord" name="coord" placeholder="Ej: 40.513, -3.3486">
+            </div>
+
+            <div class="form-group">
+                <label for="gps">Mapa URL</label>
+                <input type="text" id="gps" name="gps" placeholder="Se genera automáticamente">
+            </div>
+
+            <div class="form-group">
+                <label for="foto">Foto</label>
+                <input type="file" id="foto" name="foto">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password">
+                <div id="indicadorPassword">Evaluación de longitud: Sin introducir</div>
+            </div>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Sensores de la Habitación</legend>
+        
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="tempActual">Temperatura Actual (°C)</label>
+                <input type="text" id="tempActual" name="tempActual" placeholder="Ej: 24">
+            </div>
+            
+            <div class="form-group">
+                <label for="temp-max">Temperatura Máxima</label>
+                <input type="number" id="temp-max" name="temp-max" min="-20" max="45">
+            </div>
+
+            <div class="form-group">
+                <label for="temp-min">Temperatura Mínima</label>
+                <input type="number" id="temp-min" name="temp-min" min="-20" max="45">
+            </div>
+        </div>
+
+        <div class="checkbox-group">
+            <strong>Sensores activos:</strong>
+            <label><input type="checkbox" id="humedad" name="sensor" value="humedad"> Humedad</label>    
+            <label><input type="checkbox" id="nsonido" name="sensor" value="nsonido"> Nivel de Sonido</label>    
+            <label><input type="checkbox" id="nluz" name="sensor" value="nluz"> Nivel de Luz</label>    
+            <label><input type="checkbox" id="mov" name="sensor" value="mov"> Movimiento</label>    
+        </div>
+        
+        <div style="margin-top: 15px; font-weight: bold;">
+            <output id="diferencia" for="temp-max temp-min"></output>
+        </div>
+            </fieldset>
+
+                <div class="form-actions">
+                    <input type="submit" value="Enviar datos" style="padding: 10px 20px; cursor: pointer;">
                     <a href="index.html">Volver a inicio</a>    
+                </div>
             </form>
         </main>
         <footer>
