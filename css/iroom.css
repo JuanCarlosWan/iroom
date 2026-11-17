@@ -1,0 +1,136 @@
+main {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    
+}
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin: 0;           /* margin es el espacio que hay exterior de una celda*/
+    padding: 0;         /* padding es el especio interno que hay en una celda */
+    background: linear-gradient(135deg, #fcf9f9 0%, #363636 100%);      /* Linear-gradiant hace que sea un degradado*/
+    background-attachment: fixed; /* Hace que el fondo no se mueva al hacer scroll */
+    min-height: 100vh; /* Asegura que el fondo cubra siempre toda la pantalla */
+}
+section {
+    flex: 2;
+    padding: 20px;
+}
+nav {
+    display: flex;
+    align-items: center;
+    margin: 20px 30px;
+}
+nav ul:first-child {        /*first child es el primer ul de la seccion nav*/
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+nav ul:last-child {         /* el ultimo ul de nav*/
+    margin-left: auto;
+}
+nav li{
+    display: inline-block;
+}
+
+aside {
+    margin: 20px 0;
+    padding: 10px 20px;
+    font-size: 10px;
+    flex: 1;
+}
+img {
+    max-width: 95%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px ;
+    display: block;
+}
+#habitacion, #sensores {
+    flex: 1;        /*flex:1 hace que ocupe el espacio entero que le queda dentro de un contenedor flex*/
+}
+footer {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-weight: bold;
+    padding: 20px;
+}
+output {
+    color: black;
+}
+
+output.error {
+    color: red;
+}
+header {
+    margin: 20px;
+}
+.boton-config:hover{        /*hover hace que cuando pase el raton por encima, éste cambia de color*/
+    background-color: aquamarine;
+}
+.boton-config {
+    background-color: blue;
+    color: white;
+    align-items: right;
+}
+@media (max-width: 768px) {
+    main {
+        flex-direction: column; /* Cambia la disposición a vertical */
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    nav ul:first-child {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    nav ul:last-child {
+        margin-left: 0;
+    }
+    
+    #habitacion, #sensores {
+        width: 100%; /* Asegura que ocupen todo el ancho en móviles */
+        box-sizing: border-box;
+    }
+}
+/* DISEÑO DE LAS TABLAS (Habitación y Sensores) */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Une las líneas para que sea una sola línea fina */
+    margin-top: 15px;
+    background-color:transparent; /* Fondo blanco para destacar sobre el gris/azul */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Sombra muy sutil */
+    border-radius: 8px;
+    overflow: hidden; /* Necesario para que el borde redondeado funcione con la cabecera */
+    margin-bottom: 30px;
+}
+
+th, td {
+    border: 1px solid #d1d5db; /* Líneas grises claras */
+    padding: 12px 15px;
+    text-align: left;
+}
+
+th {
+    background-color:transparent; /* Azul oscuro elegante para la cabecera */
+    color: #ffffff;
+    font-weight: bold;
+}
+
+/* Efecto cebra: la fila alterna tiene un tono gris super clarito */
+tr:nth-child(even) {
+    background-color:transparent;
+}
+
+/* Efecto hover: se ilumina un poco al pasar el ratón */
+tr:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}

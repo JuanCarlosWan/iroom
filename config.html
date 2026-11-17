@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Configuracion del index</title>
+        <link href="css/iroom.css" rel="stylesheet">
+        <script src="script.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Configuración de la habitación</h1>
+        </header>
+        <main>
+            <form id="form-config">
+                <fieldset>    <!-- Sirve para crear un grupo-->
+                    <legend>Datos de la Habitación</legend> <!--Legend sirve para dar titulo a un grupo de campos-->
+                        <label for="pais"> País </label>
+                            <input type="text" id="pais" name="pais">
+                        <label for="ciudad"> Ciudad: </label>
+                            <input type="text" id="ciudad" name="ciudad">
+                        <label for="coord"> Coordenadas GPS: </label>
+                            <input type="text" id="coord" name="coord">
+                        <label for="mapa"> Mapa URL: </label>
+                            <input type="text" id="mapa" name="mapa">
+                        <label for="foto"> Foto: </label>
+                            <input type="file" id="foto" name="foto">
+                        <label for="pass"> Password: </label>
+                            <input type="password" id="pass" name="pass">
+                </fieldset>
+                <fieldset>
+                    <legend>Sensores de la Habitación</legend>
+                        <label for="temp"> Temperatura: </label>
+                            <input type="checkbox" id="temp" name="sensor" value="temp">    <!--NAME para  agruparlos, VALUE para identificar cada sensor-->
+                        <label for="humedad"> Humedad: </label>
+                            <input type="checkbox" id="humedad" name="sensor" value="humedad">    
+                        <label for="nsonido"> Nivel de Sonido: </label>
+                            <input type="checkbox" id="nsonido" name="sensor" value="nsonido">    
+                        <label for="nluz"> Nivel de Luz: </label>
+                            <input type="checkbox" id="nluz" name="sensor" value="nluz">    
+                        <label for="mov"> Movimiento: </label>
+                            <input type="checkbox" id="mov" name="sensor" value="mov">    <!-- ID sirve para identificar un elemento dentro del documento-->
+                        <label for="temp-max"> Temperatura Maxima: </label>
+                            <input type="number" id="temp-max" name="temp-max" min="-20" max="45">
+                        <label for="temp-min"> Temperatura Minima: </label>
+                            <input type="number" id="temp-min" name="temp-min" min="-20" max="45">
+                    <output id="diferencia" for="temp-max temp-min"></output>
+                </fieldset>
+                <input type="submit" value="Enviar datos">
+                    <a href="index.html">Volver a inicio</a>    
+            </form>
+        </main>
+        <footer>
+
+        </footer>
+    </body>
+</html>

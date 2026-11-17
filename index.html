@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <link rel="stylesheet" href="css/iroom.css">       <!-- rel indica que es una hoja de estilos-->
+        <meta charset="UTF-8">                      <!-- href indica el archivo que quiero que sea el stylesheet-->
+        <script src="script.js"></script>
+        <title>Practica 1</title>
+    </head>
+    <body>
+        <header> 
+            <h1>        <!-- "h1" sirve para poner Titulo principal-->
+                Smart Room Project
+            </h1>
+        </header>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#habitacion">         <!-- "a" sirve para crear un enlace, href sirve para indicar a dnd le lleva, y el texto entre la las etiquetas, es lo q verá el usuario-->
+                        Habitación
+                    </a>
+                </li>
+                <li>
+                    <a href="#sensores">
+                        Sensores
+                    </a>
+                </li>
+                <li>
+                    <a href="minombre.html">Nombre</a>
+                </li>
+            </ul>
+            <ul>
+                <li>
+                    <strong id="mensaje-bienvenida" style="margin-right: 15px; color: blue;"></strong>
+                </li>
+                <li>
+                    <a href="config.html" class="boton-config">Configurar habitación</a>    <!--class= boton-config sirve para ponerlo como un boton-->
+                </li>
+            </ul>
+        </nav>
+        <aside>        <!-- aside sirve para  contener informacion relacionada con la página -->
+            <h2> Información de la Página Web: configura la Habitación a tu estilo pulsando "Configuración Habitacion"</h2>
+        </aside>
+        <main> 
+            <section id = "habitacion">
+                <h2>    <!-- "h2" y "h3" sirven para titulos partes o subpartes -->
+                    Datos de la Habitación 
+                </h2>
+                <button id="btn-borrar" style="margin-top: 10px; color: red;">Borrar Configuración</button>
+                    
+                    <!--<ul>            "ul" abre una lista con viñetas 
+                        <li><strong> País: </strong><span id="mostrar-pais"> NO CONFIGURADO</span></li>
+                        <li><strong>Ciudad:</strong> <span id="mostrar-ciudad"> NO CONFIGURADO </span></li>
+                        <li> Cama de 180 x 200 cm </li>    cada "li" es un elemento que quiero añadir a esa viñeta creada 
+                        <li> Aire acondicionado </li>
+                        <li> Baño con separacion seco y humedo </li>
+                    </ul> -->
+                <table>
+                    <tr>
+                        <th style="color: black;">Propiedad</th>
+                        <th style="color: black;">Valor</th>
+                    </tr>
+                    <tr>
+                        <td>País</td>
+                        <td><span id="mostrar-pais"> NO CONFIGURADO</span> </td>
+                    </tr>
+                    <tr>
+                        <td>Ciudad</td>
+                        <td ><span id="mostrar-ciudad"> NO CONFIGURADO </span></td>
+                    </tr>
+                    <tr>
+                        <td> Cama  </td>
+                        <td> 180 x 200 cm</td>
+                    </tr>
+                    <tr>
+                        <td>Climatización</td>
+                        <td>Aire acondicionado</td>
+                    </tr>
+                    <tr>
+                        <td>Baño</td>
+                        <td>Con separación seco y húmedo</td>
+                    </tr>
+                    <tr>
+                        <td>Link de Google Maps</td>
+                        <td><a id="enlace-mapa" target="_blank" href="https://maps.app.goo.gl/tQBMdC3CDW3NTkxU8"> Google Maps </a></td>
+                    </tr>
+                </table> 
+                
+                <img id="imagen-habitacion" src="premium_photo-1670076505419-99468d952c61.avif" alt="foto de la habitacion">
+            </section>
+            <section id="sensores">
+                <h2> Datos de los Sensores </h2>
+                <table>         <!-- table es para  crear una tabla -->
+                    <tr>        <!-- tr sirve para crear una fila-->
+                        <th style="color: black;">Sensores</th>   <!-- th sirve crear una celda que nombra una columna-->
+                        <th style="color: black;">Valor</th>
+                        <th style="color: black;">Estado</th>
+                    </tr>   <!-- tr sirve para crea una fila-->
+                    <tr>
+                        <td>Temperatura:</td>   <!-- td es una celda con un dato-->
+                        <td>22</td>
+                        <td id="estado-temp" style="color: red;"> Desconocido </td>
+                    </tr>
+                    <tr>
+                        <td>Nivl de Humedad:</td>   <!-- td es una celda con un dato-->
+                        <td>45%</td>
+                        <td id="estado-humedad" style="color: red;">Desconocido</td>
+                    </tr>
+                    <tr>
+                        <td>Nivel de Sonido:</td>   <!-- td es una celda con un dato-->
+                        <td>25 dB</td>
+                        <td id="estado-sonido" style="color: red;">Desconocido</td>
+                    </tr>
+                    <tr>
+                        <td>Nivel de Luz:</td>
+                        <td>-</td>
+                        <td id="estado-luz" style="color: red;">Desactivado</td>
+                    </tr>
+                    <tr>
+                        <td>Movimiento:</td>
+                        <td>-</td>
+                        <td id="estado-mov" style="color: red;">Desactivado</td>
+                    </tr>
+                    <tr>
+                        <td>Temperatura Máxima:</td>
+                        <td>-</td>
+                        <td id="estado-tmax" style="color: red;">Desactivado</td>
+                        </tr>
+                    <tr>
+                        <td>Temperatura Mínima:</td>
+                        <td>-</td>
+                        <td id="estado-tmin" style="color: red;">Desactivado</td>
+                    </tr>
+                </table>
+            </section> 
+        </main>
+
+
+        <footer>
+            <p> Universidad de Alcalá </p>  
+        </footer>
+    </body>
+</html>
