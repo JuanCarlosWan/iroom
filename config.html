@@ -4,7 +4,9 @@
         <meta charset="UTF-8">
         <title>Configuracion del index</title>
         <link href="css/iroom.css" rel="stylesheet">
+        <script src="js/jquery-3.7.1.min.js"></script>
         <script src="script.js"></script>
+        <script src="js/config-ajax.js"></script>
         
     </head>
     <body>
@@ -19,20 +21,24 @@
         <div class="form-grid">
             <div class="form-group">
                 <label for="pais">País</label>
-                <input type="text" id="pais" name="pais" list="listaPaises">
-                <datalist id="listaPaises">
-                    <option value="España">
-                    <option value="Francia">
-                    <option value="Portugal">
-                    <option value="Italia">
-                    <option value="Alemania">
-                    <option value="Paises Bajos">  
-                </datalist>
+                <!-- Práctica 3, apartado 2.1: el país es ahora un SELECT y cada opción indica
+                     el fichero de texto del servidor que tiene sus ciudades -->
+                <select id="pais" name="pais">
+                    <option value="">-- Elige un país --</option>
+                    <option value="España" data-fichero="espana">España</option>
+                    <option value="Francia" data-fichero="francia">Francia</option>
+                    <option value="Portugal" data-fichero="portugal">Portugal</option>
+                    <option value="Italia" data-fichero="italia">Italia</option>
+                </select>
             </div>
 
             <div class="form-group">
                 <label for="ciudad">Ciudad</label>
-                <input type="text" id="ciudad" name="ciudad">
+                <!-- Se rellena por Ajax según el país elegido (js/config-ajax.js) -->
+                <select id="ciudad" name="ciudad" disabled>
+                    <option value="">-- Elige primero un país --</option>
+                </select>
+                <span id="estado-ciudades" class="estado-carga"></span>
             </div>
 
             <div class="form-group">

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Estaciones meteorológicas - Smart Room</title>
+        <link rel="stylesheet" href="css/iroom.css">
+        <script src="js/jquery-3.7.1.min.js"></script>
+        <script src="script.js"></script>
+        <script src="js/tablas.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Datos de las estaciones meteorológicas</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="tablas.html">Tablas</a></li>
+                <li><a href="graficas.html">Gráficas</a></li>
+                <li><a href="calculadora.html">Calculadora</a></li>
+            </ul>
+            <ul>
+                <li><a href="config.html" class="boton-config">Configurar habitación</a></li>
+            </ul>
+        </nav>
+        <aside>
+            <h2>Páginas 1 y 2: datos en el cliente · Página 3: XML con Ajax en JavaScript puro · Página 4: JSON con Ajax en jQuery.
+                Marca una casilla de una columna para ver su histograma. Haz clic en una cabecera para ordenar.</h2>
+        </aside>
+
+        <main class="columna">
+            <section class="bloque-tablas">
+                <!-- Apartado 1.3: tablas estáticas SIN formato. El formato se lo da jQuery al mostrarlas -->
+                <div id="pagina-1" class="pagina-tabla">
+                    <table>
+                        <thead>
+                            <tr><th>Ciudad</th><th>Temperatura (º)</th><th>Humedad (%)</th><th>Ruido</th><th>Nivel de luz</th><th>Color de Iluminación</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Alcalá de H.</td><td>25</td><td>48</td><td>150</td><td>120</td><td>000000</td></tr>
+                            <tr><td>Alicante</td><td>30</td><td>69</td><td>180</td><td>211</td><td>FF0000</td></tr>
+                            <tr><td>Badajoz</td><td>35</td><td>30</td><td>50</td><td>150</td><td>00FF00</td></tr>
+                            <tr><td>Burgos</td><td>18</td><td>42</td><td>211</td><td>180</td><td>0000FF</td></tr>
+                            <tr><td>Córdoba</td><td>35</td><td>41</td><td>150</td><td>50</td><td>FFFFFF</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="pagina-2" class="pagina-tabla">
+                    <table>
+                        <thead>
+                            <tr><th>Ciudad</th><th>Temperatura (º)</th><th>Humedad (%)</th><th>Ruido</th><th>Nivel de luz</th><th>Color de Iluminación</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Granada</td><td>27</td><td>38</td><td>95</td><td>175</td><td>FFA500</td></tr>
+                            <tr><td>Huelva</td><td>31</td><td>62</td><td>70</td><td>205</td><td>FFFF00</td></tr>
+                            <tr><td>León</td><td>16</td><td>55</td><td>60</td><td>140</td><td>800080</td></tr>
+                            <tr><td>Madrid</td><td>28</td><td>35</td><td>230</td><td>190</td><td>00FFFF</td></tr>
+                            <tr><td>Málaga</td><td>29</td><td>71</td><td>160</td><td>220</td><td>FF00FF</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Apartado 2.2: esta página llega del servidor en XML (datos/pagina3.xml) con JavaScript puro -->
+                <div id="pagina-3" class="pagina-tabla" data-origen="xml"></div>
+
+                <!-- Apartado 2.2: esta página llega del servidor en JSON (datos/pagina4.json) con jQuery -->
+                <div id="pagina-4" class="pagina-tabla" data-origen="json"></div>
+
+                <div id="paginacion" class="paginacion">
+                    <a href="#" data-pagina="1">Página 1</a>
+                    <a href="#" data-pagina="2">Página 2</a>
+                    <a href="#" data-pagina="3">Página 3</a>
+                    <a href="#" data-pagina="4">Página 4</a>
+                </div>
+                <p id="estado-carga" class="estado-carga"></p>
+            </section>
+
+            <!-- Apartado 2.3: contenedor del histograma (lo rellena js/tablas.js) -->
+            <section id="histograma" class="histograma">
+                <h3 class="histograma-titulo"></h3>
+                <div class="histograma-filas"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Universidad de Alcalá</p>
+        </footer>
+    </body>
+</html>

@@ -326,3 +326,190 @@ tr:hover {
     border-top: 1px solid #ddd;
     padding-top: 20px;
 }
+
+/* =====================================================================
+   PRÁCTICA 3: jQuery y Ajax
+   ===================================================================== */
+main.columna {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0 30px;
+    box-sizing: border-box;
+}
+
+/* --- Selects del formulario de configuración (apartado 2.1) --- */
+.form-group select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    width: 100%;
+    box-sizing: border-box;
+    background: #fff;
+}
+.form-group select:disabled { background: #eee; color: #777; }
+.estado-carga { font-size: 0.85rem; color: #555; min-height: 1em; }
+
+/* --- Galería (apartado 1.2) --- */
+.bloque-galeria, .bloque-tablas, .histograma {
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 10px;
+    padding: 10px 20px 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    margin-bottom: 20px;
+}
+.tira-imagenes {
+    display: flex;
+    flex-wrap: wrap;          /* si no caben en una fila, pasan a la segunda */
+    gap: 12px;
+    justify-content: center;
+}
+.tira-imagenes img, .carrusel-pista img {
+    width: 200px;
+    height: 133px;
+    max-width: none;
+    max-height: none;
+    object-fit: cover;
+    margin: 0;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+.tira-imagenes img:hover, .carrusel-pista img:hover { transform: scale(1.05); }
+
+.carrusel { display: flex; align-items: center; gap: 10px; }
+.carrusel-ventana {
+    flex: 1;
+    overflow: hidden;          /* solo se ve una parte de la pista */
+    position: relative;
+    height: 160px;
+}
+.carrusel-pista {
+    position: absolute;        /* jQuery anima su propiedad "left" */
+    left: 0;
+    top: 0;
+    white-space: nowrap;
+    padding: 12px 0;
+}
+.carrusel-pista img { margin: 0 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.4); }
+.carrusel-boton {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    border: none;
+    background: #1e3a5f;
+    color: #fff;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+.carrusel-boton:disabled { opacity: 0.3; cursor: default; }
+.carrusel-puntos { text-align: center; margin-top: 8px; }
+.carrusel-puntos .punto {
+    display: inline-block;
+    width: 10px; height: 10px;
+    margin: 0 4px;
+    border-radius: 50%;
+    background: #9fb3c8;
+    cursor: pointer;
+}
+.carrusel-puntos .punto.activo { background: #1e3a5f; }
+.carrusel-auto { display: block; text-align: center; margin-top: 8px; font-size: 0.9rem; }
+
+.tooltip-galeria {
+    display: none;
+    position: fixed;
+    z-index: 500;
+    width: 320px;
+    background: #fff;
+    padding: 8px;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+    pointer-events: none;      /* que no "robe" el ratón a la imagen */
+}
+.tooltip-galeria img { width: 100%; max-width: none; max-height: none; margin: 0; box-shadow: none; }
+.tooltip-galeria p { margin: 4px 0 0; }
+.tooltip-galeria .tooltip-titulo { font-weight: bold; }
+.tooltip-galeria .tooltip-info { font-size: 0.85rem; color: #555; }
+
+.visor {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    background: rgba(0, 0, 0, 0.85);
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+.visor figure { margin: 0; text-align: center; color: #fff; }
+.visor figure img { max-width: 80vw; max-height: 75vh; margin: 0; }
+.visor button {
+    background: rgba(255,255,255,0.15);
+    color: #fff;
+    border: none;
+    font-size: 2rem;
+    width: 56px; height: 56px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+.visor .visor-cerrar { position: absolute; top: 20px; right: 20px; }
+
+/* --- Tablas paginadas (apartado 1.3) --- */
+.paginacion { text-align: center; margin-top: 15px; }
+.paginacion a {
+    display: inline-block;
+    margin: 0 6px;
+    padding: 6px 14px;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.8);
+    color: #1e3a5f;
+    text-decoration: none;
+    border: 1px solid #1e3a5f;
+}
+.paginacion a.activa, .paginacion a:hover { background: #1e3a5f; color: #fff; }
+.muestra-color {
+    display: inline-block;
+    width: 14px; height: 14px;
+    margin-right: 6px;
+    border: 1px solid #555;
+    vertical-align: middle;
+}
+.tabla-dinamica th { background: #1e3a5f; color: #fff; text-align: center; }
+.tabla-dinamica .fila-histograma th { background: #e8f1f8; color: #1e3a5f; font-size: 0.8rem; }
+.tabla-dinamica td:not(:first-child) { text-align: right; }
+
+/* --- Histograma (apartado 2.3) --- */
+.histograma-titulo { margin-top: 5px; }
+.hist-fila { display: flex; align-items: center; gap: 10px; margin: 6px 0; }
+.hist-etiqueta { width: 110px; font-weight: bold; text-align: right; font-size: 0.9rem; }
+.hist-pista { flex: 1; background: rgba(0,0,0,0.06); border-radius: 4px; height: 24px; }
+.hist-barra {
+    height: 100%;
+    border-radius: 4px;
+    background: #1e3a5f;
+    position: relative;
+    min-width: 2px;
+}
+.hist-temperatura { background: linear-gradient(90deg, #ffb74d, #e53935); }
+.hist-humedad     { background: linear-gradient(90deg, #81d4fa, #0277bd); }
+.hist-ruido       { background: linear-gradient(90deg, #ce93d8, #6a1b9a); }
+.hist-luz         { background: linear-gradient(90deg, #fff176, #f9a825); }
+.hist-valor {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-shadow: 0 0 3px rgba(0,0,0,0.6);
+}
+
+/* --- Gráfica Chart.js (apartado 2.4) --- */
+.contenedor-grafica { position: relative; height: 340px; margin-top: 10px; }
+
+@media (max-width: 768px) {
+    main.columna { padding: 0 10px; }
+    .tira-imagenes img, .carrusel-pista img { width: 140px; height: 93px; }
+    .carrusel-ventana { height: 120px; }
+    .bloque-tablas { overflow-x: auto; }
+    .hist-etiqueta { width: 80px; }
+}
