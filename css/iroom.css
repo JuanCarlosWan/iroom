@@ -25,6 +25,7 @@ nav {
     display: flex;
     align-items: center;
     margin: 20px 30px;
+    margin-top: auto;
 }
 nav ul:first-child {        /*first child es el primer ul de la seccion nav*/
     display: flex;
@@ -49,12 +50,13 @@ aside {
     margin-bottom: 0%;
 }
 img {
-    margin-top: 15px;
+    margin-top: 5px;
     width: auto;
     max-width: 45%;
     max-height: 28vh;
     border-radius: 12px;
     box-shadow: 0 2px 8px ;
+    margin-right: 20px;
 }
 #habitacion, #sensores {
     flex: 1;        /*flex:1 hace que ocupe el espacio entero que le queda dentro de un contenedor flex*/
