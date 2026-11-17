@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Galería de estaciones - Smart Room</title>
+        <link rel="stylesheet" href="css/iroom.css">
+        <script src="js/jquery-3.7.1.min.js"></script>
+        <script src="script.js"></script>
+        <script src="js/galeria.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Galería de las estaciones meteorológicas</h1>
+        </header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="galeria.html">Galería</a></li>
+                <li><a href="tablas.html">Tablas</a></li>
+                <li><a href="graficas.html">Gráficas</a></li>
+                <li><a href="calculadora.html">Calculadora</a></li>
+            </ul>
+            <ul>
+                <li><a href="config.html" class="boton-config">Configurar habitación</a></li>
+            </ul>
+        </nav>
+        <aside>
+            <h2>Pasa el ratón por encima de una foto para ver su nombre y una vista ampliada. Haz clic para abrirla a pantalla completa.</h2>
+        </aside>
+
+        <main class="columna">
+            <!-- Apartado 1.2 (primer paso): pocas imágenes, en una tira de una o dos filas -->
+            <section class="bloque-galeria">
+                <h2>Tira de imágenes</h2>
+                <div id="tira-imagenes" class="tira-imagenes">
+                    <img src="img/galeria/alcala.jpg" alt="Alcalá de Henares" data-info="Estación en el campus externo de la Universidad de Alcalá">
+                    <img src="img/galeria/alicante.jpg" alt="Alicante" data-info="Estación junto al puerto de Alicante">
+                    <img src="img/galeria/badajoz.jpg" alt="Badajoz" data-info="Estación en la vega del Guadiana">
+                    <img src="img/galeria/burgos.jpg" alt="Burgos" data-info="Estación en el páramo burgalés">
+                    <img src="img/galeria/cordoba.jpg" alt="Córdoba" data-info="Estación en la campiña cordobesa">
+                    <img src="img/galeria/granada.jpg" alt="Granada" data-info="Estación a los pies de Sierra Nevada">
+                </div>
+            </section>
+
+            <!-- Apartado 1.2 (segundo paso): más imágenes de las que caben, con desplazamiento -->
+            <section class="bloque-galeria">
+                <h2>Carrusel de imágenes</h2>
+                <div class="carrusel">
+                    <button type="button" id="carrusel-anterior" class="carrusel-boton" aria-label="Anterior">&#10094;</button>
+                    <div class="carrusel-ventana">
+                        <div id="carrusel-pista" class="carrusel-pista">
+                            <img src="img/galeria/alcala.jpg" alt="Alcalá de Henares" data-info="Campus externo de la UAH">
+                            <img src="img/galeria/alicante.jpg" alt="Alicante" data-info="Junto al puerto">
+                            <img src="img/galeria/badajoz.jpg" alt="Badajoz" data-info="Vega del Guadiana">
+                            <img src="img/galeria/burgos.jpg" alt="Burgos" data-info="Páramo burgalés">
+                            <img src="img/galeria/cordoba.jpg" alt="Córdoba" data-info="Campiña cordobesa">
+                            <img src="img/galeria/granada.jpg" alt="Granada" data-info="Sierra Nevada">
+                            <img src="img/galeria/huelva.jpg" alt="Huelva" data-info="Marismas del Odiel">
+                            <img src="img/galeria/leon.jpg" alt="León" data-info="Montaña leonesa">
+                            <img src="img/galeria/madrid.jpg" alt="Madrid" data-info="Casa de Campo">
+                            <img src="img/galeria/malaga.jpg" alt="Málaga" data-info="Montes de Málaga">
+                            <img src="img/galeria/murcia.jpg" alt="Murcia" data-info="Huerta de Murcia">
+                            <img src="img/galeria/oviedo.jpg" alt="Oviedo" data-info="Monte Naranco">
+                        </div>
+                    </div>
+                    <button type="button" id="carrusel-siguiente" class="carrusel-boton" aria-label="Siguiente">&#10095;</button>
+                </div>
+                <div id="carrusel-puntos" class="carrusel-puntos"></div>
+                <!-- Apartado 1.4: reproducción automática -->
+                <label class="carrusel-auto"><input type="checkbox" id="carrusel-auto"> Pasar las fotos automáticamente</label>
+            </section>
+        </main>
+
+        <!-- Cuadro flotante que aparece al pasar el ratón (lo rellena js/galeria.js) -->
+        <div id="tooltip-galeria" class="tooltip-galeria">
+            <img src="" alt="">
+            <p class="tooltip-titulo"></p>
+            <p class="tooltip-info"></p>
+        </div>
+
+        <!-- Apartado 1.4: visor a pantalla completa (lightbox) -->
+        <div id="visor" class="visor">
+            <button type="button" class="visor-cerrar" aria-label="Cerrar">&times;</button>
+            <button type="button" class="visor-anterior" aria-label="Anterior">&#10094;</button>
+            <figure>
+                <img src="" alt="">
+                <figcaption></figcaption>
+            </figure>
+            <button type="button" class="visor-siguiente" aria-label="Siguiente">&#10095;</button>
+        </div>
+
+        <footer>
+            <p>Universidad de Alcalá</p>
+        </footer>
+    </body>
+</html>
