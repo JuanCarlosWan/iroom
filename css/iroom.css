@@ -401,17 +401,6 @@ main.columna {
     cursor: pointer;
 }
 .carrusel-boton:disabled { opacity: 0.3; cursor: default; }
-.carrusel-puntos { text-align: center; margin-top: 8px; }
-.carrusel-puntos .punto {
-    display: inline-block;
-    width: 10px; height: 10px;
-    margin: 0 4px;
-    border-radius: 50%;
-    background: #9fb3c8;
-    cursor: pointer;
-}
-.carrusel-puntos .punto.activo { background: #1e3a5f; }
-.carrusel-auto { display: block; text-align: center; margin-top: 8px; font-size: 0.9rem; }
 
 .tooltip-galeria {
     display: none;
@@ -429,29 +418,6 @@ main.columna {
 .tooltip-galeria .tooltip-titulo { font-weight: bold; }
 .tooltip-galeria .tooltip-info { font-size: 0.85rem; color: #555; }
 
-.visor {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    background: rgba(0, 0, 0, 0.85);
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-}
-.visor figure { margin: 0; text-align: center; color: #fff; }
-.visor figure img { max-width: 80vw; max-height: 75vh; margin: 0; }
-.visor button {
-    background: rgba(255,255,255,0.15);
-    color: #fff;
-    border: none;
-    font-size: 2rem;
-    width: 56px; height: 56px;
-    border-radius: 50%;
-    cursor: pointer;
-}
-.visor .visor-cerrar { position: absolute; top: 20px; right: 20px; }
-
 /* --- Tablas paginadas (apartado 1.3) --- */
 .paginacion { text-align: center; margin-top: 15px; }
 .paginacion a {
@@ -465,16 +431,6 @@ main.columna {
     border: 1px solid #1e3a5f;
 }
 .paginacion a.activa, .paginacion a:hover { background: #1e3a5f; color: #fff; }
-.muestra-color {
-    display: inline-block;
-    width: 14px; height: 14px;
-    margin-right: 6px;
-    border: 1px solid #555;
-    vertical-align: middle;
-}
-.tabla-dinamica th { background: #1e3a5f; color: #fff; text-align: center; }
-.tabla-dinamica .fila-histograma th { background: #e8f1f8; color: #1e3a5f; font-size: 0.8rem; }
-.tabla-dinamica td:not(:first-child) { text-align: right; }
 
 /* --- Histograma (apartado 2.3) --- */
 .histograma-titulo { margin-top: 5px; }
@@ -502,9 +458,6 @@ main.columna {
     font-weight: bold;
     text-shadow: 0 0 3px rgba(0,0,0,0.6);
 }
-
-/* --- Gráfica Chart.js (apartado 2.4) --- */
-.contenedor-grafica { position: relative; height: 340px; margin-top: 10px; }
 
 @media (max-width: 768px) {
     main.columna { padding: 0 10px; }

@@ -5,7 +5,6 @@
     - Apartado 2.2: página 3 cargada por Ajax en XML con JavaScript puro (XMLHttpRequest)
                     página 4 cargada por Ajax en JSON con jQuery ($.ajax / dataType "json")
     - Apartado 2.3: histograma de la columna marcada (sin librerías externas).
-    - Apartado 1.4 (mejora): ordenar la tabla pulsando en la cabecera + transiciones.
 */
 
 // Columnas de la tabla. "numerica" indica si se puede representar en el histograma
@@ -153,9 +152,8 @@ function formatearTabla($contenedor) {
     $tabla.find("thead tr:first-child th").css({
         background: "#1e3a5f",
         color: "#ffffff",
-        textAlign: "center",
-        cursor: "pointer"
-    }).attr("title", "Pulsa para ordenar");
+        textAlign: "center"
+    });
 
     // Filas alternas (efecto cebra) con los selectores :nth-child(odd / even)
     $tabla.find("tbody tr:nth-child(odd)").css("background", "rgba(255, 255, 255, 0.9)");
@@ -165,21 +163,8 @@ function formatearTabla($contenedor) {
     $tabla.find("tbody td:first-child").css("font-weight", "bold");
     $tabla.find("tbody td:not(:first-child):not(:last-child)").css("text-align", "right");
 
-    // Temperaturas altas (>= 30 º) en rojo y bajas (< 20 º) en azul
-    $tabla.find("tbody td:nth-child(2)").each(function () {
-        const t = Number($(this).text());
-        $(this).css("color", t >= 30 ? "#c62828" : (t < 20 ? "#1565c0" : "#222"));
-    });
-
-    // Columna de color: añadimos una muestra del color (solo la primera vez)
-    $tabla.find("tbody td:last-child").each(function () {
-        const $td = $(this);
-        if ($td.find(".muestra-color").length === 0) {
-            const hex = $td.text().trim();
-            $td.prepend($("<span>").addClass("muestra-color").css("background-color", "#" + hex));
-        }
-        $td.css({ fontFamily: "monospace", textAlign: "center" });
-    });
+    // Columna de color: letra monoespaciada y centrada
+    $tabla.find("tbody td:last-child").css({ fontFamily: "monospace", textAlign: "center" });
 
     // APARTADO 2.3: fila "Mostrar histograma" con una casilla por columna numérica
     if ($tabla.find("thead .fila-histograma").length === 0) {
@@ -316,31 +301,6 @@ $(function () {
             columnaHistograma = null;
             $("#histograma").slideUp(200);
         }
-    });
-
-    // MEJORA 1.4: ordenar al pulsar una cabecera (asc / desc alternando)
-    $(document).on("click", ".pagina-tabla thead tr:first-child th", function () {
-        const $th = $(this);
-        const indice = $th.index();
-        const col = COLUMNAS[indice];
-        const ascendente = $th.data("orden") !== "asc";
-        const $tbody = $th.closest("table").children("tbody");
-
-        const filas = $tbody.children("tr").get().sort(function (a, b) {
-            const va = $(a).children("td").eq(indice).text().trim();
-            const vb = $(b).children("td").eq(indice).text().trim();
-            const r = col.numerica ? Number(va) - Number(vb) : va.localeCompare(vb, "es");
-            return ascendente ? r : -r;
-        });
-        $tbody.append(filas);   // append mueve las filas existentes en el nuevo orden
-
-        $th.siblings().removeData("orden").find(".flecha-orden").remove();
-        $th.data("orden", ascendente ? "asc" : "desc").find(".flecha-orden").remove();
-        $th.append($("<span>").addClass("flecha-orden").text(ascendente ? " ▲" : " ▼"));
-
-        leerDatosDeTabla(paginaActual);
-        formatearTabla($th.closest(".pagina-tabla"));
-        if (columnaHistograma) pintarHistograma(columnaHistograma);
     });
 
     mostrarPagina(1);
