@@ -348,7 +348,6 @@ main.columna {
     background: #fff;
 }
 .form-group select:disabled { background: #eee; color: #777; }
-.estado-carga { font-size: 0.85rem; color: #555; min-height: 1em; }
 
 /* --- Galería (apartado 1.2) --- */
 .bloque-galeria, .bloque-tablas, .histograma {
@@ -400,7 +399,6 @@ main.columna {
     font-size: 1.2rem;
     cursor: pointer;
 }
-.carrusel-boton:disabled { opacity: 0.3; cursor: default; }
 
 .tooltip-galeria {
     display: none;
@@ -444,10 +442,6 @@ main.columna {
     position: relative;
     min-width: 2px;
 }
-.hist-temperatura { background: linear-gradient(90deg, #ffb74d, #e53935); }
-.hist-humedad     { background: linear-gradient(90deg, #81d4fa, #0277bd); }
-.hist-ruido       { background: linear-gradient(90deg, #ce93d8, #6a1b9a); }
-.hist-luz         { background: linear-gradient(90deg, #fff176, #f9a825); }
 .hist-valor {
     position: absolute;
     right: 6px;

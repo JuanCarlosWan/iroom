@@ -1,72 +1,43 @@
-/*
-    PRÁCTICA 3 - APARTADO 1.2: GALERÍA DE IMÁGENES (jQuery)
-    - Cuadro informativo al pasar el ratón (nombre + imagen ampliada).
-    - Carrusel con desplazamiento cuando hay más imágenes de las que caben.
-*/
+// Práctica 3 - Apartado 1.2: galería de imágenes con jQuery
 $(function () {
 
-    /* ---------- 1. CUADRO INFORMATIVO AL PASAR EL RATÓN ---------- */
-    const $tooltip = $("#tooltip-galeria");
+    // Cuadro informativo: al pasar el ratón se muestra la imagen en grande con su nombre
+    $(".tira-imagenes img, .carrusel-pista img").hover(
+        function () {
+            $("#tooltip-galeria img").attr("src", $(this).attr("src"));
+            $("#tooltip-galeria .tooltip-titulo").text($(this).attr("alt"));
+            $("#tooltip-galeria .tooltip-info").text($(this).data("info"));
+            $("#tooltip-galeria").show();
+        },
+        function () {
+            $("#tooltip-galeria").hide();
+        }
+    );
 
-    // Delegamos el evento en el documento para que sirva para la tira y el carrusel
-    $(document)
-        .on("mouseenter", ".tira-imagenes img, .carrusel-pista img", function () {
-            const $img = $(this);
-            $tooltip.find("img").attr({ src: $img.attr("src"), alt: $img.attr("alt") });
-            $tooltip.find(".tooltip-titulo").text($img.attr("alt"));
-            $tooltip.find(".tooltip-info").text($img.data("info") || "");
-            $tooltip.stop(true, true).fadeIn(150);
-        })
-        .on("mousemove", ".tira-imagenes img, .carrusel-pista img", function (e) {
-            colocarTooltip(e.clientX, e.clientY);
-        })
-        .on("mouseleave", ".tira-imagenes img, .carrusel-pista img", function () {
-            $tooltip.stop(true, true).fadeOut(100);
-        });
+    // El cuadro sigue al ratón (si no cabe a la derecha o abajo, se pone al otro lado)
+    $(".tira-imagenes img, .carrusel-pista img").mousemove(function (e) {
+        let x = e.clientX + 20;
+        let y = e.clientY + 20;
+        if (x + 340 > $(window).width()) x = e.clientX - 340;
+        if (y + 300 > $(window).height()) y = e.clientY - 300;
+        $("#tooltip-galeria").css({ left: x, top: y });
+    });
 
-    // Coloca el cuadro junto al ratón sin que se salga de la ventana
-    function colocarTooltip(x, y) {
-        const ancho = $tooltip.outerWidth();
-        const alto = $tooltip.outerHeight();
-        let left = x + 20;
-        let top = y + 20;
-        if (left + ancho > $(window).width()) left = x - ancho - 20;
-        if (top + alto > $(window).height()) top = y - alto - 20;
-        $tooltip.css({ left: Math.max(5, left), top: Math.max(5, top) });
+    // Carrusel: las flechas mueven la fila de fotos de una en una
+    let posicion = 0;
+
+    function moverCarrusel(paso) {
+        const anchoFoto = $(".carrusel-pista img").outerWidth(true);
+        const fotosVisibles = Math.floor($(".carrusel-ventana").width() / anchoFoto);
+        const ultima = $(".carrusel-pista img").length - fotosVisibles;
+
+        posicion = posicion + paso;
+        if (posicion > ultima) posicion = ultima;
+        if (posicion < 0) posicion = 0;
+
+        $(".carrusel-pista").animate({ left: -posicion * anchoFoto }, 400);
     }
 
-
-    /* ---------- 2. CARRUSEL CON DESPLAZAMIENTO ---------- */
-    const $ventana = $(".carrusel-ventana");
-    const $pista = $("#carrusel-pista");
-    const $imagenes = $pista.children("img");
-    let posicion = 0;          // índice de la primera imagen visible
-
-    function anchoImagen() {
-        return $imagenes.first().outerWidth(true);   // ancho + márgenes
-    }
-    function imagenesVisibles() {
-        return Math.max(1, Math.floor($ventana.width() / anchoImagen()));
-    }
-    function posicionMaxima() {
-        return Math.max(0, $imagenes.length - imagenesVisibles());
-    }
-
-    function moverCarrusel(nuevaPos) {
-        posicion = Math.min(Math.max(nuevaPos, 0), posicionMaxima());
-        $pista.stop().animate({ left: -posicion * anchoImagen() }, 400);
-        // Desactivamos la flecha cuando ya no se puede seguir en esa dirección
-        $("#carrusel-anterior").prop("disabled", posicion === 0);
-        $("#carrusel-siguiente").prop("disabled", posicion === posicionMaxima());
-    }
-
-    $("#carrusel-anterior").on("click", function () { moverCarrusel(posicion - 1); });
-    $("#carrusel-siguiente").on("click", function () { moverCarrusel(posicion + 1); });
-
-    // Si cambia el tamaño de la ventana, recalculamos cuántas imágenes caben
-    $(window).on("resize", function () { moverCarrusel(posicion); });
-
-    // Las imágenes deben estar cargadas para conocer su ancho real
-    $(window).on("load", function () { moverCarrusel(0); });
-    moverCarrusel(0);
+    $("#carrusel-anterior").click(function () { moverCarrusel(-1); });
+    $("#carrusel-siguiente").click(function () { moverCarrusel(1); });
 });
